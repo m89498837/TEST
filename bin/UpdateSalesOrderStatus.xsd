@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://loms.800best.com" xmlns:loms="http://loms.800best.com">
+	<!-- req -->
+	<element name="UpdateSalesOrderStatus" type="loms:salesorder_status" />
+	<complexType name="salesorder_status">
+		<all>
+			<element name="customerCode" type="string" />
+			<element name="warehouseCode" type="string" />
+			<element name="orderCode" type="string" />
+			<!-- SEE API DOC -->
+			<element name="orderStatus" type="string" />
+			<element name="orderType" type="string" minOccurs="0" />
+			<element name="operator" type="string" minOccurs="0" />
+			<element name="operatorTime" type="string" minOccurs="0" />
+			<element name="logisticsProviderCode" type="string" minOccurs="0" />
+			<element name="shippingOrderNo" type="string" minOccurs="0" />
+			<!-- INSUFFICIENT_INVENTORY,OTHER -->
+			<element name="exceptionCode" type="string" minOccurs="0" />
+			<element name="weight" type="double" minOccurs="0"/>
+			<element name="note" type="string" minOccurs="0" />
+			<element name="products" type="loms:product_list" minOccurs="0" />
+			<element name="boxes" type="loms:box_list" minOccurs="0" />
+		</all>
+	</complexType>
+	<complexType name="product_list">
+		<sequence>
+			<element name="product" type="loms:product_item" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="product_item">
+		<all>
+			<element name="skuCode" type="string" />
+			<element name="normalQuantity" type="int" />
+			<element name="defectiveQuantity" type="int" />
+			<element name="averageWeight" type="double" minOccurs="0"/>
+		</all>
+	</complexType>
+	<complexType name="box_list">
+		<sequence>
+			<element name="box" type="loms:box_item" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="box_item">
+		<all>
+			<element name="boxCode" type="string" />
+			<element name="boxName" type="string" minOccurs="0" />
+		</all>
+	</complexType>
+</schema>
